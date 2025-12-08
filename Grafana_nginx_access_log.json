@@ -1,0 +1,1599 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 827,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT count(*) AS rps\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE timestamp >= now() - INTERVAL 10 SECOND;",
+          "refId": "A"
+        }
+      ],
+      "title": "RPS",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT count(*) AS rps\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE timestamp >= now() - INTERVAL 1 HOUR;",
+          "refId": "A"
+        }
+      ],
+      "title": "Запросы/час",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT uniq(remote_addr) AS unique_ips\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE timestamp >= now() - INTERVAL 1 HOUR;",
+          "refId": "A"
+        }
+      ],
+      "title": "Уникальные IP за час",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT count(*) AS errors\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE timestamp >= now() - INTERVAL 1 HOUR\r\n  AND status >= 400;",
+          "refId": "A"
+        }
+      ],
+      "title": "Ошибки за час",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10000000
+              },
+              {
+                "color": "red",
+                "value": 50000000
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT max(body_bytes_sent) AS max_size\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE timestamp >= now() - INTERVAL 1 HOUR;",
+          "refId": "A"
+        }
+      ],
+      "title": "Макс размер ответа за час",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT count(*) AS slow_requests\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE timestamp >= now() - INTERVAL 1 HOUR\r\n  AND body_bytes_sent > 10000000;",
+          "refId": "A"
+        }
+      ],
+      "title": "Тяжелые запросы за час (более 10мб)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n    toStartOfMinute(timestamp) AS time,\r\n    count(*) AS requests\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE\r\n    $__timeFilter(timestamp)\r\nGROUP BY time\r\nORDER BY time;",
+          "refId": "A"
+        }
+      ],
+      "title": "Запросы по времени",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n    toStartOfMinute(timestamp) AS time,\r\n    countIf(status = 200) AS status_200,\r\n    countIf(status = 404) AS status_404,\r\n    countIf(status = 500) AS status_500,\r\n    countIf(status >= 400) AS errors\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE\r\n    $__timeFilter(timestamp)\r\nGROUP BY time\r\nORDER BY time;",
+          "refId": "A"
+        }
+      ],
+      "title": "Статусы ответов",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  time,\r\n  if(isNaN(json_rpc), 0, json_rpc) AS \"JSON-RPC API\",\r\n  if(isNaN(js_rpc), 0, js_rpc) AS \"JS-RPC\",\r\n  if(isNaN(charts), 0, charts) AS \"Charts\",\r\n  if(isNaN(zabbix_ui), 0, zabbix_ui) AS \"Zabbix UI\",\r\n  if(isNaN(history), 0, history) AS \"History\",\r\n  if(isNaN(other), 0, other) AS \"Other\"\r\nFROM (\r\n  SELECT\r\n    toStartOfMinute(timestamp) AS time,\r\n    countIf(request LIKE '%api_jsonrpc.php%') AS json_rpc,\r\n    countIf(request LIKE '%jsrpc.php%') AS js_rpc,\r\n    countIf(request LIKE '%chart%') AS charts,\r\n    countIf(request LIKE '%zabbix.php%') AS zabbix_ui,\r\n    countIf(request LIKE '%history%') AS history,\r\n    countIf(NOT (\r\n      request LIKE '%api_jsonrpc.php%' OR\r\n      request LIKE '%jsrpc.php%' OR\r\n      request LIKE '%chart%' OR\r\n      request LIKE '%zabbix.php%' OR\r\n      request LIKE '%history%'\r\n    )) AS other\r\n  FROM zabbix_logs.nginx_access_extended\r\n  WHERE $__timeFilter(timestamp)\r\n  GROUP BY time\r\n)\r\nORDER BY time;",
+          "refId": "A"
+        }
+      ],
+      "title": "Колво запросов по типам",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_size"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "requests"
+          }
+        ]
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  request AS URL,\r\n  count(*) AS requests,\r\n  round(avg(body_bytes_sent)) AS avg_size,\r\n  countIf(status >= 400) AS errors,\r\n  round(100 * errors / requests, 2) AS error_rate\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE $__timeFilter(timestamp)\r\nGROUP BY request\r\nORDER BY requests DESC\r\nLIMIT 15;",
+          "refId": "A"
+        }
+      ],
+      "title": "Топ URL путей",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_size"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "requests"
+          }
+        ]
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  remote_addr AS IP,\r\n  count(*) AS requests,\r\n  countIf(status >= 400) AS errors,\r\n  round(avg(body_bytes_sent)) AS avg_size\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE $__timeFilter(timestamp)\r\nGROUP BY remote_addr\r\nORDER BY requests DESC\r\nLIMIT 15;",
+          "refId": "A"
+        }
+      ],
+      "title": "Топ IP адресов",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_size"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "decbytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max_size"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "decbytes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      },
+      "id": 16,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "max_size"
+          }
+        ]
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  request AS URL,\r\n  max(body_bytes_sent) AS max_size,\r\n  count(*) AS requests,\r\n  round(avg(body_bytes_sent)) AS avg_size\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE\r\n  $__timeFilter(timestamp)\r\n  AND body_bytes_sent > 1000000\r\nGROUP BY request\r\nORDER BY max_size DESC\r\nLIMIT 10;",
+          "refId": "A"
+        }
+      ],
+      "title": "Самые тяжелые URL",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "total_size"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max_request_size"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 34
+      },
+      "id": 17,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "total_size"
+          }
+        ]
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  remote_addr AS IP,\r\n  sum(body_bytes_sent) AS total_size,\r\n  count(*) AS requests,\r\n  max(body_bytes_sent) AS max_request_size\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE $__timeFilter(timestamp)\r\nGROUP BY remote_addr\r\nORDER BY total_size DESC\r\nLIMIT 10;",
+          "refId": "A"
+        }
+      ],
+      "title": "Топ по объему трафика",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  time,\r\n  if(isNaN(json_rpc), 0, json_rpc) AS \"JSON-RPC API\",\r\n  if(isNaN(js_rpc), 0, js_rpc) AS \"JS-RPC\",\r\n  if(isNaN(charts), 0, charts) AS \"Charts\",\r\n  if(isNaN(zabbix_ui), 0, zabbix_ui) AS \"Zabbix UI\",\r\n  if(isNaN(history), 0, history) AS \"History\",\r\n  if(isNaN(other), 0, other) AS \"Other\"\r\nFROM (\r\n  SELECT\r\n    toStartOfMinute(timestamp) AS time,\r\n    maxIf(body_bytes_sent, request LIKE '%api_jsonrpc.php%') AS json_rpc,\r\n    maxIf(body_bytes_sent, request LIKE '%jsrpc.php%') AS js_rpc,\r\n    maxIf(body_bytes_sent, request LIKE '%chart%') AS charts,\r\n    maxIf(body_bytes_sent, request LIKE '%zabbix.php%') AS zabbix_ui,\r\n    maxIf(body_bytes_sent, request LIKE '%history%') AS history,\r\n    maxIf(body_bytes_sent, NOT (\r\n      request LIKE '%api_jsonrpc.php%' OR\r\n      request LIKE '%jsrpc.php%' OR\r\n      request LIKE '%chart%' OR\r\n      request LIKE '%zabbix.php%' OR\r\n      request LIKE '%history%'\r\n    )) AS other\r\n  FROM zabbix_logs.nginx_access_extended\r\n  WHERE\r\n    $__timeFilter(timestamp)\r\n    AND body_bytes_sent IS NOT NULL\r\n  GROUP BY time\r\n)\r\nORDER BY time;",
+          "refId": "A"
+        }
+      ],
+      "title": "Максимальный размер запросов по типам",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 17,
+        "x": 0,
+        "y": 54
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  time,\r\n  sumIf(body_bytes_sent, request LIKE '%api_jsonrpc.php%') AS \"JSON-RPC API\",\r\n  sumIf(body_bytes_sent, request LIKE '%jsrpc.php%') AS \"JS-RPC\",\r\n  sumIf(body_bytes_sent, request LIKE '%chart%') AS \"Charts\",\r\n  sumIf(body_bytes_sent, request LIKE '%zabbix.php%') AS \"Zabbix UI\",\r\n  sumIf(body_bytes_sent, request LIKE '%history%') AS \"History\",\r\n  sumIf(body_bytes_sent, NOT (\r\n    request LIKE '%api_jsonrpc.php%' OR\r\n    request LIKE '%jsrpc.php%' OR\r\n    request LIKE '%chart%' OR\r\n    request LIKE '%zabbix.php%' OR\r\n    request LIKE '%history%'\r\n  )) AS \"Other\"\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE\r\n  $__timeFilter(timestamp)\r\n  AND body_bytes_sent IS NOT NULL\r\nGROUP BY toStartOfMinute(timestamp) AS time\r\nORDER BY time;",
+          "refId": "A"
+        }
+      ],
+      "title": "Общий размер запросов по типам",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 7,
+        "x": 17,
+        "y": 54
+      },
+      "id": 10,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "sort": "desc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  CASE\r\n    WHEN request LIKE '%api_jsonrpc.php%' THEN 'JSON-RPC API'\r\n    WHEN request LIKE '%jsrpc.php%' THEN 'JS-RPC'\r\n    WHEN request LIKE '%chart%' THEN 'Charts'\r\n    WHEN request LIKE '%history%' THEN 'History'\r\n    WHEN request LIKE '%zabbix.php%' THEN 'Zabbix UI'\r\n    ELSE 'Other'\r\n  END AS type,\r\n  count(*) AS requests\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE $__timeFilter(timestamp)\r\nGROUP BY type\r\nORDER BY requests DESC;",
+          "refId": "A"
+        }
+      ],
+      "title": "Типы запросов",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 64
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "errors"
+          }
+        ]
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  status,\r\n  request,\r\n  count(*) AS errors\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE\r\n  $__timeFilter(timestamp)\r\n  AND status >= 400\r\nGROUP BY status, request\r\nORDER BY errors DESC\r\nLIMIT 10;",
+          "refId": "A"
+        }
+      ],
+      "title": "Топ ошибок",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "bf3s6iftvfitcc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 64
+      },
+      "id": 11,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "requests"
+          }
+        ]
+      },
+      "pluginVersion": "11.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "Clickhouse zabbix",
+            "uid": "bf3s6iftvfitcc"
+          },
+          "editorType": "sql",
+          "format": 1,
+          "meta": {},
+          "pluginVersion": "4.11.2",
+          "queryType": "table",
+          "rawSql": "SELECT\r\n  http_user_agent,\r\n  count(*) AS requests\r\nFROM zabbix_logs.nginx_access_extended\r\nWHERE\r\n  $__timeFilter(timestamp)\r\n  AND http_user_agent != '-'\r\nGROUP BY http_user_agent\r\nORDER BY requests DESC\r\nLIMIT 10;",
+          "refId": "A"
+        }
+      ],
+      "title": "Топ User Agents",
+      "type": "table"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Zabbix - Nginx аналитика",
+  "uid": "zabbix-nginx-dashboard-pro",
+  "version": 11,
+  "weekStart": ""
+}
