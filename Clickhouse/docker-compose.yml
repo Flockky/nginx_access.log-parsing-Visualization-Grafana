@@ -1,0 +1,12 @@
+version: '3'
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - /opt/docker_compose/Click/clickhouse_:/var/lib/clickhouse
+      - /opt/docker_compose/Click/clickhouse_users:/etc/clickhouse-server/users.d
+    restart: unless-stopped
