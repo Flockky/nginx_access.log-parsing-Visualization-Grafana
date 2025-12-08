@@ -1,0 +1,46 @@
+sources:
+  nginx_logs:
+    type: "file"
+    include:
+      - "/var/log/nginx/access.log"
+    read_from: "end"
+
+transforms:
+  parse_nginx:
+    type: "remap"
+    inputs:
+      - nginx_logs
+    source: |
+      parsed = parse_regex!(.message, r'^(?P<remote_addr>\S+)\s+\-\s+\-\s+\[(?P<timestamp_str>[^\]]+)\]\s+"(?P<request>[^"]*)"\s+(?P<status>\d+)\s+(?P<body_bytes_sent>\d+)\s+"(?P<http_referer>[^"]*)"\s+"(?P<http_user_agent>[^"]*)"\s+"(?P<upstream_response_time>[^"]*)"$')
+
+      ts = parse_timestamp!(parsed.timestamp_str, "%d/%b/%Y:%H:%M:%S %z")
+
+      upstream_time = if parsed.upstream_response_time == "-" { "" } else { parsed.upstream_response_time }
+
+      . = {
+        "timestamp": format_timestamp!(ts, format: "%Y-%m-%d %H:%M:%S"),
+        "remote_addr": parsed.remote_addr,
+        "remote_user": "-",
+        "request": parsed.request,
+        "status": to_int!(parsed.status),
+        "body_bytes_sent": to_int!(parsed.body_bytes_sent),
+        "http_referer": parsed.http_referer,
+        "http_user_agent": parsed.http_user_agent,
+        "request_time": 0.0,
+        "upstream_response_time": upstream_time
+      }
+
+sinks:
+  clickhouse:
+    type: "clickhouse"
+    inputs: ["parse_nginx"]
+    endpoint: "http://Ваш_адрес_Clickhouse:8123/"
+    database: "zabbix_logs"
+    table: "nginx_access_extended"
+    compression: "gzip"
+    skip_unknown_fields: true
+    healthcheck: false
+    buffer:
+     type: memory
+     max_events: 200
+     when_full: drop_newest
