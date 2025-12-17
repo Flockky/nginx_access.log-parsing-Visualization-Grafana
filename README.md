@@ -4,6 +4,7 @@
 Проект основан на **Vector** → **ClickHouse** → **Grafana**, и включает готовый дашборд, конфигурации и инструкции по развёртыванию.
 
 <img width="1688" height="611" alt="fce3b411-a646-460e-a53d-0d498346adc6" src="https://github.com/user-attachments/assets/0bc829da-3f92-4e53-b0c4-b27dd0c7e1d5" />
+
 ---
 
 
